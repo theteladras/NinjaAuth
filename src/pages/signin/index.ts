@@ -1,8 +1,8 @@
 import * as Mustache from 'mustache';
 import template from './template.mustache';
-import { IComponent, IRouter } from '../types';
+import { IComponent, IRouter } from '../../types';
 import { Signup } from '../signup';
-import { DOMServices } from '../services';
+import { DOMServices } from '../../services';
 import { ForgotPassword } from '../fpw';
 
 export class Signin extends DOMServices implements IComponent {

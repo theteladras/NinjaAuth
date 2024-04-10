@@ -11,3 +11,7 @@ export interface IDOMServices {
 	handleClickById<T = void>(id: string, cb: () => T | Promise<T>): void;
 	removeHandlers(): void;
 }
+
+export interface AuthNinjaOptions {
+	defaultPage?: string | IComponent;
+}

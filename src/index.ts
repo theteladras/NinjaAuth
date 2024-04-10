@@ -1,14 +1,15 @@
-import { ForgotPassword } from './fpw';
+export * from './pages';
+export { AuthNinjaOptions } from './types';
+
 import { Router } from './router';
-import { Signin } from './signin';
-import { Signup } from './signup';
-import { IComponent } from './types';
+import { Signin, Signup, ForgotPassword } from './pages';
+import { AuthNinjaOptions, IComponent } from './types';
 
 export class AuthNinja {
 	private readonly router = new Router();
 	private components: IComponent[];
 
-	constructor() {
+	constructor(readonly options?: AuthNinjaOptions) {
 		this.initBootstrap();
 		this.initComponents();
 	}
@@ -35,6 +36,12 @@ export class AuthNinja {
 	}
 
 	public render() {
-		this.router.setComponents(this.components, Signin.called);
+		const _defaultPage = this.options?.defaultPage;
+		const defaultPage =
+			_defaultPage && typeof _defaultPage === 'string'
+				? _defaultPage
+				: (<IComponent>_defaultPage)?.called;
+
+		this.router.setComponents(this.components, defaultPage ?? Signin.called);
 	}
 }

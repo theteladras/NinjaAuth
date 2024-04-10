@@ -1,7 +1,7 @@
 import * as Mustache from 'mustache';
 import template from './template.mustache';
-import { IComponent, IRouter } from '../types';
-import { DOMServices } from '../services';
+import { IComponent, IRouter } from '../../types';
+import { DOMServices } from '../../services';
 import { Signin } from '../signin';
 
 export class ForgotPassword extends DOMServices implements IComponent {
@@ -29,7 +29,9 @@ export class ForgotPassword extends DOMServices implements IComponent {
 	}
 
 	private cleanup(): void {
-		const signinContainer = document.querySelector('.forgot-password-container');
+		const signinContainer = document.querySelector(
+			'.forgot-password-container'
+		);
 
 		if (signinContainer) {
 			this.removeHandlers();
