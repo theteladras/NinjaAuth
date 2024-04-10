@@ -3,6 +3,7 @@ import template from './template.mustache';
 import { IComponent, IRouter } from '../../types';
 import { DOMServices } from '../../services';
 import { Signin } from '../signin';
+import { Verify } from '../verify';
 
 export class ForgotPassword extends DOMServices implements IComponent {
 	public static called = 'forgot-password';
@@ -15,16 +16,17 @@ export class ForgotPassword extends DOMServices implements IComponent {
 	public render(): ForgotPassword['cleanup'] {
 		const rendered = Mustache.render(template, {});
 
-		this.createContainer('forgot-password').show(rendered);
+		this.createContainer(ForgotPassword.called).show(rendered);
 
 		this.handleClickById('login', this.handleLogin.bind(this));
+		this.handleClickById('submit', this.handleSubmit.bind(this));
 
 		return this.cleanup.bind(this);
 	}
 
 	private cleanup(): void {
 		const signinContainer = document.querySelector(
-			'.forgot-password-container'
+			`.${ForgotPassword.called}-container`
 		);
 
 		if (signinContainer) {
@@ -37,5 +39,10 @@ export class ForgotPassword extends DOMServices implements IComponent {
 	private handleLogin(e) {
 		e.preventDefault();
 		this.router.renderComponent(Signin.called);
+	}
+
+	private handleSubmit(e) {
+		e.preventDefault();
+		this.router.renderComponent(Verify.called);
 	}
 }

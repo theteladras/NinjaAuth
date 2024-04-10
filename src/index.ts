@@ -2,7 +2,7 @@ export * from './pages';
 export { AuthNinjaOptions } from './types';
 
 import { Router } from './router';
-import { Signin, Signup, ForgotPassword } from './pages';
+import { Signin, Signup, ForgotPassword, Verify } from './pages';
 import { AuthNinjaOptions, IComponent } from './types';
 
 export class AuthNinja {
@@ -19,6 +19,7 @@ export class AuthNinja {
 			new Signin(this.router),
 			new Signup(this.router),
 			new ForgotPassword(this.router),
+			new Verify(this.router),
 		];
 	}
 

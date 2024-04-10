@@ -1,0 +1,35 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">Verify Your Identity</div>
+        <div class="card-body">
+          <form>
+            <div class="form-group d-flex justify-content-center">
+              <input type="text" class="{{ digitInputClass }} form-control mr-2 text-center" id="digit1" maxlength="1"
+                size="1" pattern="[0-9]" placeholder="-">
+              <input type="text" class="{{ digitInputClass }} form-control mr-2 text-center" id="digit2" maxlength="1"
+                size="1" pattern="[0-9]" placeholder="-">
+              <input type="text" class="{{ digitInputClass }} form-control mr-2 text-center" id="digit3" maxlength="1"
+                size="1" pattern="[0-9]" placeholder="-">
+              <input type="text" class="{{ digitInputClass }} form-control mr-2 text-center" id="digit4" maxlength="1"
+                size="1" pattern="[0-9]" placeholder="-">
+              <input type="text" class="{{ digitInputClass }} form-control mr-2 text-center" id="digit5" maxlength="1"
+                size="1" pattern="[0-9]" placeholder="-">
+              <input type="text" class="{{ digitInputClass }} form-control text-center" id="digit6" maxlength="1"
+                size="1" pattern="[0-9]" placeholder="-">
+            </div>
+            <small id="verificationCodeHelp" class="form-text text-muted text-center">Enter the 6-digit verification
+              code you received via email.</small>
+            <button type="submit" class="btn btn-primary mt-3 btn-block">Verify</button>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="text-center">
+            Didn't receive the code? <a href="#">Resend</a> | <a id="login" href="#">Log In</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
