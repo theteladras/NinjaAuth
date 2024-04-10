@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": true,
+        "declaration": true,
+        "resolveJsonModule": true,
+        "downlevelIteration": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "noEmit": false,
+        "allowJs": true,
+        "checkJs": true,
+        "allowSyntheticDefaultImports": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "lib": [
+            "esnext",
+            "dom",
+        ]
+    },
+    "include": [
+        "src",
+        "declarations.d.ts",
+    ]
+}
