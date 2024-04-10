@@ -15,13 +15,7 @@ export class Signup extends DOMServices implements IComponent {
 	public render(): Signup['cleanup'] {
 		const rendered = Mustache.render(template, {});
 
-		const div = document.createElement('div');
-		div.className = 'signup-container';
-		div.innerHTML = rendered;
-
-		if (!document.body.querySelector('.signup-container')) {
-			window.document.body.appendChild(div);
-		}
+		this.createContainer('signup').show(rendered);
 
 		this.handleClickById('submit', this.handleSubmit.bind(this));
 		this.handleClickById('login', this.handleLogin.bind(this));

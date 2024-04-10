@@ -9,6 +9,7 @@
 	],
 	"scripts": {
 		"build": "tsc",
+    "dev": "npx webpack serve",
 		"start": "npm run build && node dist/index.js"
 	},
 	"keywords": [

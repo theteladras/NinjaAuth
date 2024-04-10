@@ -15,13 +15,7 @@ export class ForgotPassword extends DOMServices implements IComponent {
 	public render(): ForgotPassword['cleanup'] {
 		const rendered = Mustache.render(template, {});
 
-		const div = document.createElement('div');
-		div.className = 'forgot-password-container';
-		div.innerHTML = rendered;
-
-		if (!document.body.querySelector('.forgot-password-container')) {
-			window.document.body.appendChild(div);
-		}
+		this.createContainer('forgot-password').show(rendered);
 
 		this.handleClickById('login', this.handleLogin.bind(this));
 

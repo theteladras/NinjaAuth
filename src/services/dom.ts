@@ -24,4 +24,20 @@ export class DOMServices implements IDOMServices {
 			}
 		});
 	}
+
+	createContainer(name: string): { show: (t: string) => void } {
+		const div = document.createElement('div');
+
+		div.className = `${name}-container vw-100 vh-100 d-flex justify-content-center align-items-center`;
+
+		return {
+			show: (template: string) => {
+				div.innerHTML = template;
+
+				if (!document.body.querySelector(`.${name}-container`)) {
+					window.document.body.appendChild(div);
+				}
+			},
+		};
+	}
 }

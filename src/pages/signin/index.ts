@@ -16,13 +16,7 @@ export class Signin extends DOMServices implements IComponent {
 	public render(): Signin['cleanup'] {
 		const rendered = Mustache.render(template, {});
 
-		const div = document.createElement('div');
-		div.className = 'signin-container';
-		div.innerHTML = rendered;
-
-		if (!document.body.querySelector('.signin-container')) {
-			window.document.body.appendChild(div);
-		}
+		this.createContainer('signin').show(rendered);
 
 		this.handleClickById('submit', this.handleSubmit.bind(this));
 		this.handleClickById('register', this.handleRegister.bind(this));
