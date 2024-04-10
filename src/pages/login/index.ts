@@ -1,22 +1,22 @@
 import * as Mustache from 'mustache';
-import template from './template.mustache';
+import template from './login.template.mustache';
 import { IComponent, IRouter } from '../../types';
 import { Signup } from '../signup';
 import { DOMServices } from '../../services';
 import { ForgotPassword } from '../fpw';
 
-export class Signin extends DOMServices implements IComponent {
-	public static called = 'signin';
-	called = Signin.called;
+export class Login extends DOMServices implements IComponent {
+	public static called = 'login';
+	called = Login.called;
 
 	constructor(readonly router: IRouter) {
 		super();
 	}
 
-	public render(): Signin['cleanup'] {
+	public render(): Login['cleanup'] {
 		const rendered = Mustache.render(template, {});
 
-		this.createContainer('signin').show(rendered);
+		this.createContainer('login').show(rendered);
 
 		this.handleClickById('submit', this.handleSubmit.bind(this));
 		this.handleClickById('register', this.handleRegister.bind(this));
@@ -26,12 +26,12 @@ export class Signin extends DOMServices implements IComponent {
 	}
 
 	private cleanup(): void {
-		const signinContainer = document.querySelector('.signin-container');
+		const loginContainer = document.querySelector('.login-container');
 
-		if (signinContainer) {
+		if (loginContainer) {
 			this.removeHandlers();
 
-			signinContainer.remove();
+			loginContainer.remove();
 		}
 	}
 

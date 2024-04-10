@@ -1,8 +1,8 @@
 import * as Mustache from 'mustache';
-import template from './template.mustache';
+import template from './verify.template.mustache';
 import { IComponent, IRouter } from '../../types';
 import { DOMServices } from '../../services';
-import { Signin } from '../signin';
+import { Login } from '../login';
 
 export class Verify extends DOMServices implements IComponent {
 	private digitInputClass = 'verification-digit';
@@ -61,6 +61,6 @@ export class Verify extends DOMServices implements IComponent {
 
 	private handleLogin(e) {
 		e.preventDefault();
-		this.router.renderComponent(Signin.called);
+		this.router.renderComponent(Login.called);
 	}
 }

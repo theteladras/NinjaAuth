@@ -1,8 +1,8 @@
 import * as Mustache from 'mustache';
-import template from './template.mustache';
+import template from './fpw.template.mustache';
 import { IComponent, IRouter } from '../../types';
 import { DOMServices } from '../../services';
-import { Signin } from '../signin';
+import { Login } from '../login';
 import { Verify } from '../verify';
 
 export class ForgotPassword extends DOMServices implements IComponent {
@@ -38,7 +38,7 @@ export class ForgotPassword extends DOMServices implements IComponent {
 
 	private handleLogin(e) {
 		e.preventDefault();
-		this.router.renderComponent(Signin.called);
+		this.router.renderComponent(Login.called);
 	}
 
 	private handleSubmit(e) {

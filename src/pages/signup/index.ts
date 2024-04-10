@@ -1,8 +1,8 @@
 import * as Mustache from 'mustache';
-import template from './template.mustache';
+import template from './signup.template.mustache';
 import { IComponent, IRouter } from '../../types';
 import { DOMServices } from '../../services';
-import { Signin } from '../signin';
+import { Login } from '../login';
 
 export class Signup extends DOMServices implements IComponent {
 	public static called = 'signup';
@@ -39,6 +39,6 @@ export class Signup extends DOMServices implements IComponent {
 
 	private handleLogin(e) {
 		e.preventDefault();
-		this.router.renderComponent(Signin.called);
+		this.router.renderComponent(Login.called);
 	}
 }

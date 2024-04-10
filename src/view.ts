@@ -1,4 +1,4 @@
-import { AuthNinja } from './index';
+import { AuthNinja } from './Ninja';
 
 const authNinja = new AuthNinja();
 
