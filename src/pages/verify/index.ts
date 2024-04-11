@@ -3,6 +3,7 @@ import template from './verify.template.mustache';
 import { IComponent, IRouter } from '../../types';
 import { DOMServices } from '../../services';
 import { Login } from '../login';
+import { ChangePassword } from '../cpw';
 
 export class Verify extends DOMServices implements IComponent {
 	private digitInputClass = 'verification-digit';
@@ -21,6 +22,7 @@ export class Verify extends DOMServices implements IComponent {
 		this.createContainer(this.called).show(rendered);
 
 		this.handleClickById('login', this.handleLogin.bind(this));
+		this.handleClickById('submit', this.handleSubmit.bind(this));
 
 		this.handleDigitInput();
 
@@ -62,5 +64,10 @@ export class Verify extends DOMServices implements IComponent {
 	private handleLogin(e) {
 		e.preventDefault();
 		this.router.renderComponent(Login.called);
+	}
+
+	private handleSubmit(e) {
+		e.preventDefault();
+		this.router.renderComponent(ChangePassword.called);
 	}
 }

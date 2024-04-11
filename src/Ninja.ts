@@ -1,5 +1,5 @@
 import { Router } from './router';
-import { Login, Signup, ForgotPassword, Verify } from './pages';
+import { Login, Signup, ForgotPassword, Verify, ChangePassword } from './pages';
 import { AuthNinjaOptions, IComponent } from './types';
 
 export class AuthNinja {
@@ -17,6 +17,7 @@ export class AuthNinja {
 			new Signup(this.router),
 			new ForgotPassword(this.router),
 			new Verify(this.router),
+			new ChangePassword(this.router),
 		];
 	}
 
