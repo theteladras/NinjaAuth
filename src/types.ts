@@ -8,8 +8,10 @@ export interface IRouter {
 }
 
 export interface IDOMServices {
-	handleClickById<T = void>(id: string, cb: () => T | Promise<T>): void;
+	onClick<T = void>(id: string, cb: (e: Event) => T | Promise<T>): void;
 	removeHandlers(): void;
+	createContainer(): void;
+	removeContainer(): void;
 }
 
 export interface AuthNinjaOptions {

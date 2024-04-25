@@ -12,30 +12,17 @@ export class ChangePassword extends DOMServices implements IComponent {
 		super();
 	}
 
-	public render(): ChangePassword['cleanup'] {
+	public render(): DOMServices['removeContainer'] {
 		const rendered = Mustache.render(template, {});
 
-		this.createContainer(this.called).show(rendered);
+		this.createContainer().show(rendered);
 
-		this.handleClickById('submit', this.handleSubmit.bind(this));
+		this.onClick('submit', this.handleSubmit.bind(this));
 
-		return this.cleanup.bind(this);
+		return this.removeContainer.bind(this);
 	}
 
-	private cleanup(): void {
-		const signinContainer = document.querySelector(
-			`.${ChangePassword.called}-container`
-		);
-
-		if (signinContainer) {
-			this.removeHandlers();
-
-			signinContainer.remove();
-		}
-	}
-
-	private handleSubmit(e) {
-		e.preventDefault();
+	private handleSubmit(e: Event) {
 		this.router.renderComponent(Login.called);
 	}
 }

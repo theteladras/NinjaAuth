@@ -14,19 +14,19 @@ export class Verify extends DOMServices implements IComponent {
 		super();
 	}
 
-	public render(): Verify['cleanup'] {
+	public render(): DOMServices['removeContainer'] {
 		const rendered = Mustache.render(template, {
 			digitInputClass: this.digitInputClass,
 		});
 
-		this.createContainer(this.called).show(rendered);
+		this.createContainer().show(rendered);
 
-		this.handleClickById('login', this.handleLogin.bind(this));
-		this.handleClickById('submit', this.handleSubmit.bind(this));
+		this.onClick('login', this.handleLogin.bind(this));
+		this.onClick('submit', this.handleSubmit.bind(this));
 
 		this.handleDigitInput();
 
-		return this.cleanup.bind(this);
+		return this.removeContainer.bind(this);
 	}
 
 	private handleDigitInput() {
@@ -49,25 +49,11 @@ export class Verify extends DOMServices implements IComponent {
 		});
 	}
 
-	private cleanup(): void {
-		const signinContainer = document.querySelector(
-			`.${Verify.called}-container`
-		);
-
-		if (signinContainer) {
-			this.removeHandlers();
-
-			signinContainer.remove();
-		}
-	}
-
-	private handleLogin(e) {
-		e.preventDefault();
+	private handleLogin(e: Event) {
 		this.router.renderComponent(Login.called);
 	}
 
-	private handleSubmit(e) {
-		e.preventDefault();
+	private handleSubmit(e: Event) {
 		this.router.renderComponent(ChangePassword.called);
 	}
 }

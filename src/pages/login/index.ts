@@ -13,39 +13,25 @@ export class Login extends DOMServices implements IComponent {
 		super();
 	}
 
-	public render(): Login['cleanup'] {
+	public render(): DOMServices['removeContainer'] {
 		const rendered = Mustache.render(template, {});
 
-		this.createContainer('login').show(rendered);
+		this.createContainer().show(rendered);
 
-		this.handleClickById('submit', this.handleSubmit.bind(this));
-		this.handleClickById('register', this.handleRegister.bind(this));
-		this.handleClickById('fgpw', this.handleForgotPassword.bind(this));
+		this.onClick('submit', this.handleSubmit.bind(this));
+		this.onClick('register', this.handleRegister.bind(this));
+		this.onClick('fgpw', this.handleForgotPassword.bind(this));
 
-		return this.cleanup.bind(this);
+		return this.removeContainer.bind(this);
 	}
 
-	private cleanup(): void {
-		const loginContainer = document.querySelector('.login-container');
+	private handleSubmit(e: Event) {}
 
-		if (loginContainer) {
-			this.removeHandlers();
-
-			loginContainer.remove();
-		}
-	}
-
-	private handleSubmit(e) {
-		e.preventDefault();
-	}
-
-	private handleRegister(e) {
-		e.preventDefault();
+	private handleRegister(e: Event) {
 		this.router.renderComponent(Signup.called);
 	}
 
-	private handleForgotPassword(e) {
-		e.preventDefault();
+	private handleForgotPassword(e: Event) {
 		this.router.renderComponent(ForgotPassword.called);
 	}
 }

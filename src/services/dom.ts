@@ -1,18 +1,23 @@
 import { IDOMServices } from '../types';
 
-export class DOMServices implements IDOMServices {
-	private eventsForIds: Record<string, () => any> = {};
+export abstract class DOMServices implements IDOMServices {
+	public abstract called: string;
+
+	private eventsForIds: Record<string, (e: Event) => any> = {};
 
 	constructor() {}
 
-	public handleClickById<T = void>(id: string, cb: () => T | Promise<T>): void {
+	onClick<T = void>(id: string, cb: (e: Event) => T | Promise<T>): void {
 		const element = document.querySelector(`#${id}`);
 
 		if (!element) throw new Error(`Element with id [#${id}] not found.`);
 
 		this.eventsForIds[id] = cb;
 
-		element.addEventListener('click', cb);
+		element.addEventListener('click', (e) => {
+			e.preventDefault();
+			return cb(e);
+		});
 	}
 
 	removeHandlers() {
@@ -25,19 +30,29 @@ export class DOMServices implements IDOMServices {
 		});
 	}
 
-	createContainer(name: string): { show: (t: string) => void } {
+	createContainer(): { show: (t: string) => void } {
 		const div = document.createElement('div');
 
-		div.className = `${name}-container vw-100 vh-100 d-flex justify-content-center align-items-center`;
+		div.className = `${this.called}-container vw-100 vh-100 d-flex justify-content-center align-items-center`;
 
 		return {
 			show: (template: string) => {
 				div.innerHTML = template;
 
-				if (!document.body.querySelector(`.${name}-container`)) {
+				if (!document.body.querySelector(`.${this.called}-container`)) {
 					window.document.body.appendChild(div);
 				}
 			},
 		};
+	}
+
+	removeContainer(): void {
+		const container = document.querySelector(`.${this.called}-container`);
+
+		if (container) {
+			this.removeHandlers();
+
+			container.remove();
+		}
 	}
 }

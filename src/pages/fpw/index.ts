@@ -13,36 +13,22 @@ export class ForgotPassword extends DOMServices implements IComponent {
 		super();
 	}
 
-	public render(): ForgotPassword['cleanup'] {
+	public render(): DOMServices['removeContainer'] {
 		const rendered = Mustache.render(template, {});
 
-		this.createContainer(ForgotPassword.called).show(rendered);
+		this.createContainer().show(rendered);
 
-		this.handleClickById('login', this.handleLogin.bind(this));
-		this.handleClickById('submit', this.handleSubmit.bind(this));
+		this.onClick('login', this.handleLogin.bind(this));
+		this.onClick('submit', this.handleSubmit.bind(this));
 
-		return this.cleanup.bind(this);
+		return this.removeContainer.bind(this);
 	}
 
-	private cleanup(): void {
-		const signinContainer = document.querySelector(
-			`.${ForgotPassword.called}-container`
-		);
-
-		if (signinContainer) {
-			this.removeHandlers();
-
-			signinContainer.remove();
-		}
-	}
-
-	private handleLogin(e) {
-		e.preventDefault();
+	private handleLogin(e: Event) {
 		this.router.renderComponent(Login.called);
 	}
 
-	private handleSubmit(e) {
-		e.preventDefault();
+	private handleSubmit(e: Event) {
 		this.router.renderComponent(Verify.called);
 	}
 }
