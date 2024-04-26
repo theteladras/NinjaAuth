@@ -3,14 +3,26 @@ import { IDOMServices } from '../types';
 export abstract class DOMServices implements IDOMServices {
 	public abstract called: string;
 
-	private eventsForIds: Record<string, (e: Event) => any> = {};
+	private eventsForIds: Record<string, (...args: any) => any> = {};
 
 	constructor() {}
 
-	onClick<T = void>(id: string, cb: (e: Event) => T | Promise<T>): void {
+	$id<T = Element>(id: string): T {
 		const element = document.querySelector(`#${id}`);
 
 		if (!element) throw new Error(`Element with id [#${id}] not found.`);
+
+		return element as T;
+	}
+
+	$cls<T = Element>(cls: string): T {
+		const element = document.querySelector(`.${cls}`);
+
+		return element as T;
+	}
+
+	onClick<T = void>(id: string, cb: (e: Event) => T | Promise<T>): void {
+		const element = this.$id(id);
 
 		this.eventsForIds[id] = cb;
 
@@ -20,13 +32,25 @@ export abstract class DOMServices implements IDOMServices {
 		});
 	}
 
+	onChange(
+		id: string,
+		cb: (e: InputEvent, inputId: string) => void | Promise<void>
+	): void {
+		const element = this.$id(id);
+
+		this.eventsForIds[id] = cb;
+
+		element.addEventListener('input', (e) => {
+			e.preventDefault();
+			return cb(e as InputEvent, id);
+		});
+	}
+
 	removeHandlers() {
 		Object.keys(this.eventsForIds).forEach((id) => {
-			const element = document.querySelector(`#${id}`);
+			const element = this.$id(id);
 
-			if (element) {
-				element.removeEventListener('click', this.eventsForIds[id]);
-			}
+			if (element) element.removeEventListener('click', this.eventsForIds[id]);
 		});
 	}
 
@@ -39,7 +63,7 @@ export abstract class DOMServices implements IDOMServices {
 			show: (template: string) => {
 				div.innerHTML = template;
 
-				if (!document.body.querySelector(`.${this.called}-container`)) {
+				if (!this.$cls(`${this.called}-container`)) {
 					window.document.body.appendChild(div);
 				}
 			},
@@ -47,7 +71,7 @@ export abstract class DOMServices implements IDOMServices {
 	}
 
 	removeContainer(): void {
-		const container = document.querySelector(`.${this.called}-container`);
+		const container = this.$cls(`${this.called}-container`);
 
 		if (container) {
 			this.removeHandlers();
