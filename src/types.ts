@@ -1,10 +1,10 @@
 export interface IComponent {
 	called: string;
-	render: () => () => void;
+	render: (props?: Record<string, any>) => () => void;
 }
 
 export interface IRouter {
-	renderComponent: (called: string) => void;
+	renderComponent: (called: string, props?: Record<string, any>) => void;
 }
 
 export interface IDOMServices {

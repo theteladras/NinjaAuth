@@ -14,8 +14,12 @@ export class Verify extends DOMServices implements IComponent {
 		super();
 	}
 
-	public render(): DOMServices['removeContainer'] {
+	public render(props: Record<string, any>): DOMServices['removeContainer'] {
+		const accountActivationVersion = props.version === 'ACTIVATE_ACCOUNT';
 		const rendered = Mustache.render(template, {
+			title: accountActivationVersion
+				? 'Activate your account'
+				: 'Verify Your Identity',
 			digitInputClass: this.digitInputClass,
 		});
 

@@ -4,6 +4,7 @@ import { IComponent, IRouter } from '../../types';
 import { Signup } from '../signup';
 import { DOMServices } from '../../services';
 import { ForgotPassword } from '../fpw';
+import { Verify } from '../verify';
 
 export class Login extends DOMServices implements IComponent {
 	public static called = 'login';
@@ -25,7 +26,11 @@ export class Login extends DOMServices implements IComponent {
 		return this.removeContainer.bind(this);
 	}
 
-	private handleSubmit(e: Event) {}
+	private handleSubmit(e: Event) {
+		this.router.renderComponent(Verify.called, {
+			version: "ACTIVATE_ACCOUNT"
+		});
+	}
 
 	private handleRegister(e: Event) {
 		this.router.renderComponent(Signup.called);
