@@ -1,5 +1,5 @@
-import { AuthNinja } from './Ninja';
+import { Ninja } from './Ninja';
 
-const authNinja = new AuthNinja();
+const ninja = new Ninja();
 
-authNinja.render();
+ninja.auth();

@@ -2,7 +2,7 @@ import { Router } from './router';
 import { Login, Signup, ForgotPassword, Verify, ChangePassword } from './pages';
 import { AuthNinjaOptions, IComponent } from './types';
 
-export class AuthNinja {
+export class Ninja {
 	private readonly router = new Router();
 	private components: IComponent[];
 
@@ -34,7 +34,7 @@ export class AuthNinja {
 		}
 	}
 
-	public render() {
+	public auth() {
 		const _defaultPage = this.options?.defaultPage;
 		const defaultPage =
 			_defaultPage && typeof _defaultPage === 'string'
