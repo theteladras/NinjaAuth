@@ -10,7 +10,10 @@ export class Router implements IRouter {
 		this.renderComponent(defaultComponent);
 	}
 
-	public renderComponent = (called: string, props?: Record<string, any>) => {
+	public renderComponent = (
+		called: string,
+		props: Record<string, any> = {}
+	) => {
 		this.cleanupCall?.();
 		this.cleanupCall = this.components[called].render(props);
 	};

@@ -6,6 +6,8 @@ import { DOMServices } from '../../services';
 import { ForgotPassword } from '../fpw';
 import { Verify } from '../verify';
 
+const imageUrl = require('../../statics/AuthNinja.png');
+
 export class Login extends DOMServices implements IComponent {
 	public static called = 'login';
 	called = Login.called;
@@ -15,7 +17,9 @@ export class Login extends DOMServices implements IComponent {
 	}
 
 	public render(): DOMServices['removeContainer'] {
-		const rendered = Mustache.render(template, {});
+		const rendered = Mustache.render(template, {
+			imageUrl: imageUrl.default,
+		});
 
 		this.createContainer().show(rendered);
 
@@ -28,7 +32,7 @@ export class Login extends DOMServices implements IComponent {
 
 	private handleSubmit(e: Event) {
 		this.router.renderComponent(Verify.called, {
-			version: "ACTIVATE_ACCOUNT"
+			version: 'ACTIVATE_ACCOUNT',
 		});
 	}
 

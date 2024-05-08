@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-    mode: 'production',
+	mode: 'production',
 	entry: './src/view.ts',
 	output: {
 		filename: '[name].js',
@@ -13,6 +13,15 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			{
+				test: /\.(png|jpe?g|gif|svg)$/i,
+				loader: 'file-loader',
+				include: path.resolve(__dirname, 'src/statics'), // Include only files from src/statics
+				options: {
+					name: '[name].[ext]',
+					outputPath: 'statics/', // Output path for the images
+				},
+			},
 			{
 				test: /\.ts$/,
 				use: 'ts-loader',

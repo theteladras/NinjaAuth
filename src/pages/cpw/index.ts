@@ -5,6 +5,8 @@ import { DOMServices } from '../../services';
 import { Login } from '../login';
 import { hasNumberOrSpecialChar, hasUpperAndLower } from '../../utils';
 
+const imageUrl = require('../../statics/AuthNinja.png');
+
 export class ChangePassword extends DOMServices implements IComponent {
 	public static called = 'cpw';
 	called = ChangePassword.called;
@@ -16,7 +18,7 @@ export class ChangePassword extends DOMServices implements IComponent {
 	}
 
 	public render(): DOMServices['removeContainer'] {
-		const rendered = Mustache.render(template, {});
+		const rendered = Mustache.render(template, { imageUrl: imageUrl.default });
 
 		this.createContainer().show(rendered);
 

@@ -5,6 +5,8 @@ import { DOMServices } from '../../services';
 import { Login } from '../login';
 import { ChangePassword } from '../cpw';
 
+const imageUrl = require('../../statics/AuthNinja.png');
+
 export class Verify extends DOMServices implements IComponent {
 	private digitInputClass = 'verification-digit';
 	public static called = 'verify';
@@ -17,6 +19,7 @@ export class Verify extends DOMServices implements IComponent {
 	public render(props: Record<string, any>): DOMServices['removeContainer'] {
 		const accountActivationVersion = props.version === 'ACTIVATE_ACCOUNT';
 		const rendered = Mustache.render(template, {
+			imageUrl: imageUrl.default,
 			title: accountActivationVersion
 				? 'Activate your account'
 				: 'Verify Your Identity',

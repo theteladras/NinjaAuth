@@ -21,6 +21,7 @@
 	"devDependencies": {
 		"@types/mustache": "^4.2.5",
 		"@types/node": "^20.12.5",
+		"file-loader": "^6.2.0",
 		"html-webpack-plugin": "^5.6.0",
 		"mustache-loader": "^1.4.3",
 		"raw-loader": "^4.0.2",

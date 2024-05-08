@@ -4,6 +4,8 @@ import { IComponent, IRouter } from '../../types';
 import { DOMServices } from '../../services';
 import { Login } from '../login';
 
+const imageUrl = require('../../statics/AuthNinja.png');
+
 export class Signup extends DOMServices implements IComponent {
 	public static called = 'signup';
 	called = Signup.called;
@@ -13,7 +15,7 @@ export class Signup extends DOMServices implements IComponent {
 	}
 
 	public render(): DOMServices['removeContainer'] {
-		const rendered = Mustache.render(template, {});
+		const rendered = Mustache.render(template, { imageUrl: imageUrl.default });
 
 		this.createContainer().show(rendered);
 
