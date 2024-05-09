@@ -5,7 +5,7 @@ import { DOMServices } from '../../services';
 import { Login } from '../login';
 import { hasNumberOrSpecialChar, hasUpperAndLower } from '../../utils';
 
-const imageUrl = require('../../statics/AuthNinja.png');
+const imageUrl = require('../../statics/NinjaAuth.png');
 
 export class ChangePassword extends DOMServices implements IComponent {
 	public static called = 'cpw';

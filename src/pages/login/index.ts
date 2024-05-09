@@ -6,7 +6,7 @@ import { DOMServices } from '../../services';
 import { ForgotPassword } from '../fpw';
 import { Verify } from '../verify';
 
-const imageUrl = require('../../statics/AuthNinja.png');
+const imageUrl = require('../../statics/NinjaAuth.png');
 
 export class Login extends DOMServices implements IComponent {
 	public static called = 'login';

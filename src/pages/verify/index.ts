@@ -5,7 +5,7 @@ import { DOMServices } from '../../services';
 import { Login } from '../login';
 import { ChangePassword } from '../cpw';
 
-const imageUrl = require('../../statics/AuthNinja.png');
+const imageUrl = require('../../statics/NinjaAuth.png');
 
 export class Verify extends DOMServices implements IComponent {
 	private digitInputClass = 'verification-digit';

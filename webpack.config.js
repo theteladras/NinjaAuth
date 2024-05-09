@@ -5,7 +5,7 @@ module.exports = {
 	mode: 'production',
 	entry: './src/view.ts',
 	output: {
-		filename: '[name].js',
+		filename: 'index.js',
 		path: path.resolve(__dirname, 'dist'),
 	},
 	resolve: {

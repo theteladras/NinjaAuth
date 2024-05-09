@@ -14,6 +14,6 @@ export interface IDOMServices {
 	removeContainer(): void;
 }
 
-export interface AuthNinjaOptions {
+export interface NinjaAuthOptions {
 	defaultPage?: string | IComponent;
 }

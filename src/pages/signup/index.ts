@@ -4,7 +4,7 @@ import { IComponent, IRouter } from '../../types';
 import { DOMServices } from '../../services';
 import { Login } from '../login';
 
-const imageUrl = require('../../statics/AuthNinja.png');
+const imageUrl = require('../../statics/NinjaAuth.png');
 
 export class Signup extends DOMServices implements IComponent {
 	public static called = 'signup';

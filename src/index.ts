@@ -1,3 +1,3 @@
 export * from './pages';
-export { AuthNinjaOptions } from './types';
+export { NinjaAuthOptions } from './types';
 export * from './Ninja';

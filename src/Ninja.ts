@@ -1,12 +1,12 @@
 import { Router } from './router';
 import { Login, Signup, ForgotPassword, Verify, ChangePassword } from './pages';
-import { AuthNinjaOptions, IComponent } from './types';
+import { NinjaAuthOptions, IComponent } from './types';
 
 export class Ninja {
 	private readonly router = new Router();
 	private components: IComponent[];
 
-	constructor(readonly options?: AuthNinjaOptions) {
+	constructor(readonly options?: NinjaAuthOptions) {
 		this.initBootstrap();
 		this.initComponents();
 	}
